@@ -1,0 +1,41 @@
+<h1>Listing earthquakes</h1>
+
+<table>
+  <tr>
+    <th>Src</th>
+    <th>Eqid</th>
+    <th>Version</th>
+    <th>Datetime</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th>Magnitude</th>
+    <th>Depth</th>
+    <th>Nst</th>
+    <th>Region</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @earthquakes.each do |earthquake| %>
+  <tr>
+    <td><%= earthquake.src %></td>
+    <td><%= earthquake.eqid %></td>
+    <td><%= earthquake.version %></td>
+    <td><%= earthquake.datetime %></td>
+    <td><%= earthquake.lat %></td>
+    <td><%= earthquake.lon %></td>
+    <td><%= earthquake.magnitude %></td>
+    <td><%= earthquake.depth %></td>
+    <td><%= earthquake.nst %></td>
+    <td><%= earthquake.region %></td>
+    <td><%= link_to 'Show', earthquake %></td>
+    <td><%= link_to 'Edit', edit_earthquake_path(earthquake) %></td>
+    <td><%= link_to 'Destroy', earthquake, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Earthquake', new_earthquake_path %>
