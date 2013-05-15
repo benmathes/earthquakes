@@ -22,7 +22,7 @@
     <td><%= earthquake.src %></td>
     <td><%= earthquake.eqid %></td>
     <td><%= earthquake.version %></td>
-    <td><%= earthquake.datetime %></td>
+    <td><%= earthquake.datetime.to_time.to_i %></td>
     <td><%= earthquake.lat %></td>
     <td><%= earthquake.lon %></td>
     <td><%= earthquake.magnitude %></td>

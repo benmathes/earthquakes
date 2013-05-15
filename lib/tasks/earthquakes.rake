@@ -11,14 +11,17 @@ namespace :earthquakes do
     # over time, the number of earthquakes in the DB will vastly outnumber
     # the number of new earthquakes, so we first look for which earthquakes
     # are NOT in the DB already, which will usually be a sparse lookup on the Eqid index.
+
+    # this is a little brittle in that it relies on the proper order of the CSV:
     # Src,Eqid,Version,Datetime,Lat,Lon,Magnitude,Depth,NST,Region
-    already_there = Earthquake.where ['eqid in (?)', earthquakes.map {|e| e[1] } ]
+
+    already_in_our_db = Earthquake.where ['eqid in (?)', earthquakes.map {|e| e[1] } ]
     # make a hash lookup for faster checking
-    is_earthquake_there = {}
-    already_there.each { |earthquake| is_earthquake_there[earthquake.eqid] = true }
+    is_earthquake_in_our_db = {}
+    already_in_our_db.each { |earthquake| is_earthquake_in_our_db[earthquake.eqid] = true }
 
     earthquakes.each do |earthquake|
-      unless is_earthquake_there[earthquake[1]]
+      unless is_earthquake_in_our_db[earthquake[1]]
         Earthquake.create(
           :src => earthquake[0],
           :eqid => earthquake[1],
@@ -33,12 +36,5 @@ namespace :earthquakes do
         )
       end
     end
-
-
-    # check all the Eqid's to see if we have them already
-
-    # if no, insert
-
-
   end
 end

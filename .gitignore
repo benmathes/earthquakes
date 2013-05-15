@@ -29,7 +29,9 @@
 #*.sql
 *.sqlite
 */tmp
-/tmp*
+/tmp/*
+*.pid
+
 
 # OS generated files #
 ######################
