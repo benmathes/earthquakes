@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514235908) do
+ActiveRecord::Schema.define(:version => 20130516160603) do
 
   create_table "earthquakes", :force => true do |t|
     t.string   "src"
@@ -28,6 +28,10 @@ ActiveRecord::Schema.define(:version => 20130514235908) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "earthquakes", ["datetime"], :name => "index_earthquakes_on_datetime"
   add_index "earthquakes", ["eqid"], :name => "index_earthquakes_on_eqid", :unique => true
+  add_index "earthquakes", ["lat"], :name => "index_earthquakes_on_lat"
+  add_index "earthquakes", ["lon"], :name => "index_earthquakes_on_lon"
+  add_index "earthquakes", ["magnitude"], :name => "index_earthquakes_on_magnitude"
 
 end
