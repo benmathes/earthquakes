@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class EarthquakeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "no duplicate eqid's" do
+
+  end
 end

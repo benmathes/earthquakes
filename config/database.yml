@@ -22,7 +22,7 @@ test:
   database: earthquake_challenge_test
   pool: 5
   username: earthquake_challenge
-  password:
+  password: kuarwhaw487rya34
 
 production:
   adapter: postgresql

@@ -1,25 +1,24 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  src: MyString
-  eqid: MyString
+  datetime: 2013-05-14T23:43:27Z
+  depth: 13.3
+  eqid: 10717110
+  lat: 65.1739
+  lon: -149.3495
+  magnitude: 2.1
+  nst: 20
+  region: northern Alaska
+  src: ak
   version: 1
-  datetime: 2013-05-14 16:59:08
-  lat: 1.5
-  lon: 1.5
-  magnitude: 1.5
-  depth: 1.5
-  nst: 1
-  region: MyString
 
-two:
-  src: MyString
-  eqid: MyString
-  version: 1
-  datetime: 2013-05-14 16:59:08
-  lat: 1.5
-  lon: 1.5
-  magnitude: 1.5
-  depth: 1.5
-  nst: 1
-  region: MyString
+one_duplicate_eqid:
+  datetime: 2013-05-14T23:33:27Z
+  depth: 12.3
+  eqid: 10717110
+  lat: 63.1739
+  lon: -119.3495
+  magnitude: 4.1
+  nst: 21
+  region: northern Alaska
+  src: ak
+  version: 2

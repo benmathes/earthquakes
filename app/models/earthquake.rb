@@ -31,4 +31,6 @@ class Earthquake < ActiveRecord::Base
 
   end
   extend Scopes
+
+  validates :eqid, :uniqueness => true
 end
