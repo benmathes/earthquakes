@@ -1,4 +1,7 @@
 class Earthquake < ActiveRecord::Base
+
+  validates :eqid, :uniqueness => true
+
   module Scopes
     def on(unix_timestamp)
       where(:datetime => Time.at(unix_timestamp.to_i).to_datetime)
@@ -12,7 +15,7 @@ class Earthquake < ActiveRecord::Base
       where('magnitude > ?', magnitude)
     end
 
-    def near(latitude, longitude, radius_miles=5)
+    def near(latitude, longitude, radius_miles = 5)
       where(
         '( 3959 * acos(
           cos( radians(?) ) *
@@ -31,6 +34,4 @@ class Earthquake < ActiveRecord::Base
 
   end
   extend Scopes
-
-  validates :eqid, :uniqueness => true
 end

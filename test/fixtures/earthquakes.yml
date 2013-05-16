@@ -1,24 +1,36 @@
 
 one:
-  datetime: 2013-05-14T23:43:27Z
+  datetime: 2012-05-14T23:33:27Z
   depth: 13.3
-  eqid: 10717110
-  lat: 65.1739
-  lon: -149.3495
+  eqid: 1234
+  lat: 63.2739
+  lon: -139.3495
   magnitude: 2.1
   nst: 20
   region: northern Alaska
   src: ak
   version: 1
 
-one_duplicate_eqid:
-  datetime: 2013-05-14T23:33:27Z
+two:
+  datetime: 2013-03-14T23:33:27Z
   depth: 12.3
-  eqid: 10717110
+  eqid: 12345
   lat: 63.1739
-  lon: -119.3495
+  lon: -140.3495
   magnitude: 4.1
   nst: 21
   region: northern Alaska
   src: ak
   version: 2
+
+three:
+  datetime: 2013-05-14T23:43:27Z
+  depth: 10.3
+  eqid: 123456
+  lat: 13.1739
+  lon: -19.3495
+  magnitude: 3.1
+  nst: 24
+  region: northern CA
+  src: CA
+  version: 1
