@@ -55,5 +55,10 @@ module EarthquakeChallenge
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Enable the asset pipeline. https://github.com/rails/sass-rails/issues/86
+    config.assets.enabled = true
+    config.assets.initialize_on_precompile = false
+    config.action_controller.assets_dir = "#{File.dirname(File.dirname(__FILE__))}/public"
   end
 end
