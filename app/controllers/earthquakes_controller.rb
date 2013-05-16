@@ -20,20 +20,25 @@ class EarthquakesController < ApplicationController
 
     # If on and since are both present, return results since the timestamp until the end of that day.
     if params[:on] && params[:since]
-
+      @earthquakes = @earthquakes.until_end_of_day params[:since]
     else
-      @earthquakes = @earthquakes.on(params[:on])       if params[:on]
-      @earthquakes = @earthquakes.since(params[:since]) if params[:since]
+      @earthquakes = @earthquakes.on params[:on] if params[:on]
+      @earthquakes = @earthquakes.since params[:since] if params[:since]
     end
 
-    @earthquakes = @earthquakes.over(params[:over])   if params[:over]
-    @earthquakes = @earthquakes.near(
-      params[:near].split(',').first,
-      params[:near].split(',').last,
-      params[:radius])                                if params[:near]
+    @earthquakes = @earthquakes.over params[:over] if params[:over]
+
+    # format is $url?near=lat,lon
+    if params[:near]
+      @earthquakes = @earthquakes.near(
+        params[:near].split(',').first,
+        params[:near].split(',').last,
+        params[:radius]
+      )
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @earthquakes }
     end
   end

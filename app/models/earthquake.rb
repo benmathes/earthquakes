@@ -25,6 +25,10 @@ class Earthquake < ActiveRecord::Base
       )
     end
 
+    def until_end_of_day(unix_timestamp)
+      where('datetime between ? and ?', Time.at(unix_timestamp.to_i), Time.at(unix_timestamp.to_i).end_of_day.to_datetime)
+    end
+
   end
   extend Scopes
 end
