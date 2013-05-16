@@ -15,7 +15,6 @@ class EarthquakesController < ApplicationController
   #   # Returns all earthquakes within 5 miles of lat: 36.6702, lng: -114.8870
   #
   def index
-    # Src,Eqid,Version,Datetime,Lat,Lon,Magnitude,Depth,NST,Region
     @earthquakes = Earthquake.scoped
 
     # If on and since are both present, return results since the timestamp until the end of that day.
