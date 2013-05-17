@@ -1,6 +1,11 @@
-<h1>Listing earthquakes</h1>
+<h1>Earthquakes</h1>
 
-<table>
+<div id="map"></div>
+<% %w[lat lon].each do |cardinal| %>
+  <input type="hidden" id="map_center_<%= cardinal %>" value="<%= @earthquakes.map{|e| e.send(cardinal).to_f }.reduce(:+).to_f / @earthquakes.size %>">
+<% end %>
+
+<table class="earthquakes">
   <tr>
     <th>Src</th>
     <th>Eqid</th>
@@ -18,13 +23,13 @@
   </tr>
 
 <% @earthquakes.each do |earthquake| %>
-  <tr>
+  <tr class="earthquake">
     <td><%= earthquake.src %></td>
     <td><%= earthquake.eqid %></td>
     <td><%= earthquake.version %></td>
     <td><%= earthquake.datetime %></td>
-    <td><%= earthquake.lat %></td>
-    <td><%= earthquake.lon %></td>
+    <td class='lat'><%= earthquake.lat %></td>
+    <td class='lon'><%= earthquake.lon %></td>
     <td><%= earthquake.magnitude %></td>
     <td><%= earthquake.depth %></td>
     <td><%= earthquake.nst %></td>

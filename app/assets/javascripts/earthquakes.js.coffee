@@ -1,3 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  mapOptions =
+    center: new google.maps.LatLng $('#map_center_lat').val(), $('#map_center_lon').val()
+    zoom: 8
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+
+  map = new google.maps.Map $("#map")[0], mapOptions
+
+  $('.earthquake').each (i, earthquake) ->
+    new google.maps.Marker
+      map: map
+      position: new google.maps.LatLng(
+        parseFloat($(earthquake).find('.lat').text(), 10),
+        parseFloat($(earthquake).find('.lon').text(), 10)
+      )
+
