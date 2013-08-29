@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.0.rc2'
 gem 'pg'
-gem 'haml'
+gem 'haml-rails'
 
 # for http get of new earthquakes in rake tasks
 gem 'eat'

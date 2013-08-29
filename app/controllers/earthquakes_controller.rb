@@ -37,6 +37,7 @@ class EarthquakesController < ApplicationController
     end
 
     respond_to do |format|
+      format.html
       format.json { render :json => @earthquakes }
     end
   end

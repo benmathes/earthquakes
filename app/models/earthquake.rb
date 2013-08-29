@@ -42,10 +42,11 @@ class Earthquake < ActiveRecord::Base
   end
 
   def self.import_from_usgs(csv_text = '')
-    require 'csv'
+    require 'csv' #hacky.
 
     earthquakes = CSV.parse csv_text.present? ? csv_text : usgs_list, :col_sep => ','
     earthquakes.delete_at 0 # the descriptor line
+    earthquakes.delete_at 0 # the "this will be deprecated soon" line
 
     # over time, the number of earthquakes in the DB will vastly outnumber
     # the number of new earthquakes, so we first look for which earthquakes

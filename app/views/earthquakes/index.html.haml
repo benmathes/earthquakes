@@ -19,7 +19,7 @@
     %th Region  
 
   - @earthquakes.each do |earthquake|
-    <tr class="earthquake">
+    %tr.earthquake
       %td= earthquake.src
       %td= earthquake.eqid
       %td= earthquake.version
