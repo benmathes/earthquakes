@@ -27,5 +27,4 @@ class EarthquakeTest < ActiveSupport::TestCase
   # I would just be flat out duplicating the same simple logic (e.g.
   # greater_than comparison of magnitudes). And if you're duplicating
   # logic you're not really testing anything.
-
 end

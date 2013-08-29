@@ -1,6 +1,4 @@
-# Coding Challenge
-
-Create an JSON API to the "Real-time, worldwide earthquake list for the past 7 days".
+JSON API to the "Real-time, worldwide earthquake list for the past 7 days".
 
     https://explore.data.gov/Geography-and-Environment/Worldwide-M1-Earthquakes-Past-7-Days/7tag-iwnu
     http://earthquake.usgs.gov/earthquakes/catalogs/eqs7day-M1.txt
