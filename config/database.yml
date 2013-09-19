@@ -2,9 +2,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: earthquake_challenge_development
+  database: earthquakes_development
   pool: 5
-  username: earthquake_challenge
+  username: earthquakes
   password: kuarwhaw487rya34
 
   # Minimum log levels, in increasing order:
@@ -19,15 +19,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: earthquake_challenge_test
+  database: earthquakes_test
   pool: 5
-  username: earthquake_challenge
+  username: earthquakes
   password: kuarwhaw487rya34
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: earthquake_challenge_production
+  database: earthquakes_production
   pool: 5
-  username: earthquake_challenge
+  username: earthquakes
   password:

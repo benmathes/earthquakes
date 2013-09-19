@@ -13,25 +13,25 @@
 
 ActiveRecord::Schema.define(:version => 20130516160603) do
 
-  create_table "earthquakes", :force => true do |t|
-    t.string   "src"
-    t.string   "eqid"
-    t.integer  "version"
-    t.datetime "datetime"
-    t.float    "lat"
-    t.float    "lon"
+  create_table "earthquakes", :primary_key => "local_id", :force => true do |t|
+    t.string   "id"
     t.float    "magnitude"
+    t.string   "place"
+    t.datetime "time"
+    t.string   "url"
+    t.string   "detail"
+    t.string   "title"
+    t.float    "latitude"
+    t.float    "longitude"
     t.float    "depth"
-    t.integer  "nst"
-    t.string   "region"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "earthquakes", ["datetime"], :name => "index_earthquakes_on_datetime"
-  add_index "earthquakes", ["eqid"], :name => "index_earthquakes_on_eqid", :unique => true
-  add_index "earthquakes", ["lat"], :name => "index_earthquakes_on_lat"
-  add_index "earthquakes", ["lon"], :name => "index_earthquakes_on_lon"
+  add_index "earthquakes", ["id"], :name => "index_earthquakes_on_id", :unique => true
+  add_index "earthquakes", ["latitude"], :name => "index_earthquakes_on_latitude"
+  add_index "earthquakes", ["longitude"], :name => "index_earthquakes_on_longitude"
   add_index "earthquakes", ["magnitude"], :name => "index_earthquakes_on_magnitude"
+  add_index "earthquakes", ["time"], :name => "index_earthquakes_on_time"
 
 end

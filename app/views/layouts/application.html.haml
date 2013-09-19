@@ -1,0 +1,10 @@
+%html
+ %head
+  %title
+    Earthquakes
+    = stylesheet_link_tag("application", :media => "all")
+    = javascript_include_tag("application")
+    = javascript_include_tag("https://maps.googleapis.com/maps/api/js?key=#{YAML.load_file("config/api_keys.yml")['google']['maps']}&sensor=false")
+    = csrf_meta_tags
+
+ = yield
