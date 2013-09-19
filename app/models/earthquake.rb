@@ -40,4 +40,11 @@ class Earthquake < ActiveRecord::Base
   end
   extend Scopes
 
+
+  # postgres GIS? http://postgis.net/install
+  # does it work on heroku? https://devcenter.heroku.com/articles/postgis
+
+  # region as defined by the ascii files?
+  # region as defined by A GIS group_by?, e.g. http://gis.stackexchange.com/questions/11567/spatial-clustering-with-postgis
+
 end

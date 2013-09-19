@@ -1,4 +1,4 @@
-EarthquakeChallenge::Application.routes.draw do
+Earthquakes::Application.routes.draw do
   root :to => 'earthquakes#index'
-  match 'earthquakes' => 'earthquakes#index'
+  match 'quakes' => 'earthquakes#index'
 end
