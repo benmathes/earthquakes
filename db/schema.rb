@@ -11,27 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516160603) do
+ActiveRecord::Schema.define(:version => 20130514235908) do
 
-  create_table "earthquakes", :primary_key => "local_id", :force => true do |t|
-    t.string   "id"
+  create_table "earthquakes", :force => true do |t|
+    t.string   "usgs_id"
     t.float    "magnitude"
     t.string   "place"
     t.datetime "time"
     t.string   "url"
     t.string   "detail"
     t.string   "title"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.float    "depth"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.spatial  "coordinates", :limit => {:srid=>4326, :type=>"point"}
   end
-
-  add_index "earthquakes", ["id"], :name => "index_earthquakes_on_id", :unique => true
-  add_index "earthquakes", ["latitude"], :name => "index_earthquakes_on_latitude"
-  add_index "earthquakes", ["longitude"], :name => "index_earthquakes_on_longitude"
-  add_index "earthquakes", ["magnitude"], :name => "index_earthquakes_on_magnitude"
-  add_index "earthquakes", ["time"], :name => "index_earthquakes_on_time"
 
 end
