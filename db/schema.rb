@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(:version => 20130514235908) do
   create_table "earthquakes", :force => true do |t|
     t.string   "usgs_id"
     t.float    "magnitude"
-    t.string   "place"
+    t.boolean  "in_usa"
     t.datetime "time"
     t.string   "url"
     t.string   "detail"
     t.string   "title"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.spatial  "coordinates", :limit => {:srid=>4326, :type=>"point"}
+    t.spatial  "coordinates", :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
   end
 
 end
