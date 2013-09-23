@@ -81,7 +81,7 @@ namespace :earthquakes do
       {
         usgs_id:     earthquake['id'],
         magnitude:   earthquake['properties']['mag'],
-        in_usa:       US_STATES[earthquake['properties']['place'].split.last.downcase],
+        in_usa:      US_STATES[earthquake['properties']['place'].split.last.downcase],
         time:        Time.at(earthquake['properties']['time']/1000.0).to_datetime,
         url:         earthquake['properties']['url'],
         detail:      earthquake['properties']['detail'],

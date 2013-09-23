@@ -9,22 +9,29 @@ class EarthquakesController < ApplicationController
   def index
     @earthquakes = Earthquake.scoped
 
-    # defaults
-    params.merge({
+    params_with_defaults = HashWithIndifferentAccess.new({
       count:    10,
       days:     10,
       location: 'ALL',
       region:   'place',
-      sort:     true
-    })
+      sort:     true,
+      radius:   Earthquake::DEFAULT_RADIUS_MILES
+    }).merge(params)
 
-    @earthquakes.limit(params[:count].to_i)
-    @earthquakes.since_days_ago(params[:days].to_i)
-    @earthquakes.in_usa if params[:location].to_s === 'US'
-    # important to call this last, see method comments.
+    @earthquakes = @earthquakes.limit(params_with_defaults[:count].to_i)
+    @earthquakes = @earthquakes.since_days_ago(params_with_defaults[:days].to_i)
+    @earthquakes = @earthquakes.in_usa if params_with_defaults[:location].to_s === 'US'
+    @earthquakes = @earthquakes.sort_most_dangerous if params_with_defaults[:sort]
+
+    # important to call avg_magnitude last, see method comments.
     # not ideal, but this is a one-off project.
-    @earthquakes.sort_most_dangerous if params[:sort]
-    @earthquakes.avg_magnitude if params[:region]
+    @earthquakes = @earthquakes.avg_magnitude(params_with_defaults[:radius].to_i) if params_with_defaults[:region] == 'place'
+
+    # force the query to run explicitly, since functions like
+    # .count on the Arel will fail since we've done some custom
+    # additions to the selects and order by's, but rails will squash
+    # the additional select clause (the average magnitude)
+    @earthquakes = @earthquakes.all
 
     respond_to do |format|
       format.html

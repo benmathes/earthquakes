@@ -1,33 +1,27 @@
 .h1 Earthquakes
 
 #map
-- %w[lat lon].each do |cardinal|
-  - map_center = @earthquakes.map{|e| e.send(cardinal).to_f }.reduce(:+).to_f / @earthquakes.size
-  %input{ :type => "hidden", :id => "map_center_#{cardinal}", :value => map_center }
+- %w[x y].each do |cardinal|
+  - center_along_cardinal = @earthquakes.map{|e| e.coordinates.send(cardinal).to_f }.reduce(:+).to_f / @earthquakes.count
+  %input{ :type => "hidden", :id => "map_center_#{cardinal}", :value => center_along_cardinal }
 
 %table.earthquakes
   %tr
-    %th Src
-    %th Eqid
-    %th Version
-    %th Datetime
+    %th usgs id
+    %th time
     %th Lat
     %th Lon
     %th Magnitude
-    %th Depth
-    %th Nst
-    %th Region  
+    %th location
+    %th Average Magnitude
 
   - @earthquakes.each do |earthquake|
     %tr.earthquake
-      %td= earthquake.src
-      %td= earthquake.eqid
-      %td= earthquake.version
-      %td= earthquake.datetime
-      %td.lat= earthquake.lat
-      %td.lon= earthquake.lon
+      %td= earthquake.usgs_id
+      %td= earthquake.time
+      %td.lat= earthquake.coordinates.x
+      %td.lon= earthquake.coordinates.y
       %td= earthquake.magnitude
-      %td= earthquake.depth
-      %td= earthquake.nst
-      %td= earthquake.region
+      %td= earthquake.title
+      %td= earthquake.average_magnitude
 

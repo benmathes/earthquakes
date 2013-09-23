@@ -1,6 +1,6 @@
 $ ->
   mapOptions =
-    center: new google.maps.LatLng $('#map_center_lat').val(), $('#map_center_lon').val()
+    center: new google.maps.LatLng $('#map_center_x').val(), $('#map_center_y').val()
     zoom: 8
     mapTypeId: google.maps.MapTypeId.TERRAIN
 
