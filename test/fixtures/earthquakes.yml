@@ -1,36 +1,24 @@
 
-one:
-  datetime: 2012-05-14T23:33:27Z
-  depth: 13.3
-  eqid: 1234
-  lat: 63.2739
-  lon: -139.3495
-  magnitude: 2.1
-  nst: 20
-  region: northern Alaska
-  src: ak
-  version: 1
+a:
+  usgs_id: ak10810941
+  magnitude: 3.5
+  in_usa: true
+  time: 2013-09-23 04:12:38
+  # 79km SSW of Atka, Alaska
+  coordinates: 0101000020E6100000AB3E575BB1D565C0A089B0E1E9C54940
 
-two:
-  datetime: 2013-03-14T23:33:27Z
-  depth: 12.3
-  eqid: 12345
-  lat: 63.1739
-  lon: -140.3495
-  magnitude: 4.1
-  nst: 21
-  region: northern Alaska
-  src: ak
-  version: 2
+near_a:
+  usgs_id: ak10810943
+  magnitude: 6
+  in_usa: true
+  time: 2013-09-23 04:12:38
+  # 80km SSW of Atka, Alaska
+  coordinates: 0101000020E6100000DE02098A1FD765C0C9E53FA4DFC64940
 
-three:
-  datetime: 2013-05-14T23:43:27Z
-  depth: 10.3
-  eqid: 123456
-  lat: 13.1739
-  lon: -19.3495
-  magnitude: 3.1
-  nst: 24
-  region: northern CA
-  src: CA
-  version: 1
+not_near_a:
+  usgs_id: ak10813443
+  magnitude: 3
+  in_usa: false
+  time: 2013-09-23 04:12:38
+  # 19km W of Fort Washakie, Wyoming
+  coordinates: 0101000020E61000008F53742497475BC08F537424977F4540
