@@ -8,11 +8,8 @@ Check it out on Heroku:
 * Install postGIS: http://postgis.net/install
   * I followed the heroku setup instructions since I wanted to get this running live: https://devcenter.heroku.com/articles/postgis
   * You may have some issues, this worked for me: https://github.com/PostgresApp/PostgresApp/issues/111
-  * may need to run this on the database initially to give the db user read access to the GIS tables:
-    # GRANT SELECT ON geometry_columns TO earthquakes;
-    # GRANT SELECT ON geography_columns TO earthquakes;
-    # GRANT SELECT ON spatial_ref_sys TO earthquakes;
-
+  * make sure to run this on your development db and your test db (or the GIS postgres extension won't work). Not ideal security, but again, a one-off project.
+    * ALTER ROLE earthquakes SUPERUSER
 
 
 ### Some ambiguities/explanations/commentary/etc.
