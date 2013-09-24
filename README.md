@@ -20,7 +20,7 @@ Check it out on Heroku:
 
 
 
-### TODO: rspec: spec test. FactoryGirl for fixtures since I need to create RGeo coordinates. test example cases.
+### Get heroku working (postGIS only on productin tier plans?)
 
 
 

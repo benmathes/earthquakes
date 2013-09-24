@@ -1,9 +1,7 @@
-
 a:
   usgs_id: ak10810941
   magnitude: 3.5
   in_usa: true
-  time: 2013-09-23 04:12:38
   # 79km SSW of Atka, Alaska
   coordinates: 0101000020E6100000AB3E575BB1D565C0A089B0E1E9C54940
 
@@ -11,7 +9,6 @@ near_a:
   usgs_id: ak10810943
   magnitude: 6
   in_usa: true
-  time: 2013-09-23 04:12:38
   # 80km SSW of Atka, Alaska
   coordinates: 0101000020E6100000DE02098A1FD765C0C9E53FA4DFC64940
 
@@ -19,6 +16,5 @@ not_near_a:
   usgs_id: ak10813443
   magnitude: 3
   in_usa: false
-  time: 2013-09-23 04:12:38
   # 19km W of Fort Washakie, Wyoming
   coordinates: 0101000020E61000008F53742497475BC08F537424977F4540

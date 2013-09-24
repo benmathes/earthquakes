@@ -21,7 +21,7 @@ class EarthquakesController < ApplicationController
     @earthquakes = @earthquakes.limit(params_with_defaults[:count].to_i)
     @earthquakes = @earthquakes.since_days_ago(params_with_defaults[:days].to_i)
     @earthquakes = @earthquakes.in_usa if params_with_defaults[:location].to_s === 'US'
-    @earthquakes = @earthquakes.sort_most_dangerous if params_with_defaults[:sort]
+    @earthquakes = @earthquakes.sort_most_dangerous if params_with_defaults[:sort] && params_with_defaults[:region] == 'place'
 
     # important to call avg_magnitude last, see method comments.
     # not ideal, but this is a one-off project.

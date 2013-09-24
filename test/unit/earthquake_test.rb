@@ -1,30 +1,36 @@
 require 'test_helper'
+require 'rake'
 
 class EarthquakeTest < ActiveSupport::TestCase
-  test "no duplicate eqid's" do
-    Earthquake.create :eqid => 1234
-    duplicate = Earthquake.create :eqid => 1234
-    assert_equal(['has already been taken'], duplicate.errors.messages[:eqid], 'a duplicate eqid should not be allowed')
+  test "no duplicate usgs_id's" do
+    attributes = {
+      usgs_id: 'aslkdfj1234',
+      magnitude: 3,
+      coordinates: RGeo::Cartesian.factory(srid: Earthquake::SRID).point(1,2)
+    }
+    Earthquake.create(attributes)
+    duplicate = Earthquake.create(attributes)
+    assert_equal(['has already been taken'], duplicate.errors.messages[:usgs_id])
   end
 
-  test "idempotency of import" do
-    # fetch the list once and try and insert it twice.
-    # we manually fetch it and re-use it in case the USGS
-    # adds a new earthquake between the two import calls (a race condition)
-    import_list = Earthquake.usgs_list
-    before = Earthquake.count
-    Earthquake.import_from_usgs import_list
-    after = Earthquake.count
-    assert_operator(before, :<, after, 'first insert should add rows')
-
-    before = Earthquake.count
-    Earthquake.import_from_usgs import_list
-    after = Earthquake.count
-    assert_equal(before, Earthquake.count, 'first insert should add rows')
+  test "average magnitude calculation" do
+    assert_equal([4.75, 4.75, 3.0], Earthquake.avg_magnitude.map(&:average_magnitude).map(&:to_f))
   end
 
-  # no testing of the scopes, because they're so simple
-  # I would just be flat out duplicating the same simple logic (e.g.
-  # greater_than comparison of magnitudes). And if you're duplicating
-  # logic you're not really testing anything.
+  test "since_days_ago scope" do
+    set_fixtures_to_recent_dates
+    assert_equal([earthquakes(:a), earthquakes(:near_a)], Earthquake.since_days_ago(4))
+  end
+
+  test "in_usa scope" do
+    assert_equal([earthquakes(:a), earthquakes(:near_a)], Earthquake.in_usa)
+  end
+
+  test "sort_most_dangerous" do
+    assert_equal(
+      [4.75, 4.75, 3.0],
+      Earthquake.avg_magnitude.sort_most_dangerous.map(&:average_magnitude).map(&:to_f)
+    )
+  end
+
 end

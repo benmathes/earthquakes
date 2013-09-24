@@ -40,7 +40,7 @@ class Earthquake < ActiveRecord::Base
       relation = self.select(['earthquakes.*', 'avg(surrounding_earthquakes.magnitude) as average_magnitude'])
         .group('earthquakes.id')
         .joins(sanitize_sql([
-          "join earthquakes as surrounding_earthquakes
+          "left join earthquakes as surrounding_earthquakes
           on ST_DWithin(earthquakes.coordinates, surrounding_earthquakes.coordinates, %d)",
           METERS_PER_MILE * radius_miles # ~1609 meters per mile
         ]))
@@ -54,7 +54,10 @@ class Earthquake < ActiveRecord::Base
         where_clause_sql = clause.kind_of?(String) ? clause : clause.to_sql
         where_clause_sql.sub('earthquakes', 'surrounding_earthquakes')
       end
-      relation.where('(' + scoping_for_surrounding_quakes.join(' and ') + ')')
+      if scoping_for_surrounding_quakes.count > 0
+        relation.where('(' + scoping_for_surrounding_quakes.join(' and ') + ')')
+      end
+      relation
     end
 
 
@@ -63,5 +66,9 @@ class Earthquake < ActiveRecord::Base
     end
   end
   extend Scopes
+
+  def average_magnitude
+    read_attribute(:average_magnitude) || nil
+  end
 
 end

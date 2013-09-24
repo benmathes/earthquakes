@@ -9,5 +9,11 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  # hack: in a fully-fledged project we'd use something like
+  # FactoryGirl to do this dynamic fixture creation
+  def set_fixtures_to_recent_dates
+    earthquakes(:a).update_attribute(:time, Date.today - 3.days)
+    earthquakes(:near_a).update_attribute(:time, Date.today - 3.days)
+    earthquakes(:not_near_a).update_attribute(:time, Date.today - 5.days)
+  end
 end
