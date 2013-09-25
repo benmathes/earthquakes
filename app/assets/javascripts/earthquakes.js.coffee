@@ -1,7 +1,7 @@
 $ ->
   mapOptions =
     center: new google.maps.LatLng $('#map_center_x').val(), $('#map_center_y').val()
-    zoom: 8
+    zoom: 2
     mapTypeId: google.maps.MapTypeId.TERRAIN
 
   map = new google.maps.Map $("#map")[0], mapOptions
@@ -12,5 +12,6 @@ $ ->
       position: new google.maps.LatLng(
         parseFloat($(earthquake).find('.lat').text(), 10),
         parseFloat($(earthquake).find('.lon').text(), 10)
-      )
+      ),
+      title: $(earthquake).find('.title').text()
 

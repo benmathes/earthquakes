@@ -28,12 +28,6 @@ test:
   username: earthquakes
   password: kuarwhaw487rya34
 
-production:
-  adapter: postgis
-  postgis_extension: postgis
-  schema_search_path: '"$user", public, postgis'
-  encoding: unicode
-  database: earthquakes_production
-  pool: 5
-  username: earthquakes
-  password:
+# for a one-off project. otherwise would obviously not use the development database
+# for production
+production: &development

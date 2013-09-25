@@ -14,6 +14,9 @@ gem 'activerecord-postgis-adapter'
 gem 'haml-rails'
 gem 'jquery-rails'
 
+# for crons
+gem 'whenever'
+
 # for http get of new earthquakes in rake tasks
 gem 'eat'
 
