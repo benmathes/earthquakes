@@ -2,6 +2,11 @@
 
 After investing time installing/learning/configuring postGIS, I discovered Heroku's fine print on using postGIS: you must have a *production tier* database, the cheapest of which appears to be $50 a month. For a one-off, that's sadly not worth it. Read more: https://devcenter.heroku.com/articles/postgis
 
+Screenshots:
+
+* ![as JSON](https://github.com/benmathes/earthquakes/blob/master/app/assets/images/as_json.png "As JSON")
+* ![web ui](https://github.com/benmathes/earthquakes/blob/master/app/assets/images/web_ui.png "web ui")
+
 
 ### To set up:
 
