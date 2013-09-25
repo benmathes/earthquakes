@@ -71,4 +71,8 @@ class Earthquake < ActiveRecord::Base
     read_attribute(:average_magnitude) || nil
   end
 
+  def as_json(options)
+    super(options).merge({ coordinates: { latitude: self.coordinates.lat, longitude: self.coordinates.lon }})
+  end
+
 end
