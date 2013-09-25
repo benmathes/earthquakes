@@ -74,10 +74,12 @@ namespace :earthquakes do
     already_in_our_db.each { |earthquake| is_earthquake_in_our_db[earthquake.usgs_id] = true }
     new_earthquakes.reject!{ |earthquake| is_earthquake_in_our_db[earthquake['id']] }
 
+    puts "Creating #{new_earthquakes.count} new earthquakes..."
     new_earthquakes = new_earthquakes.map do |earthquake|
-      # for this toy project, discard data that we won't use.
-      # For a long-term project, we'd probably keep a lot of
-      # the extra metadata around for future use.
+      lon = earthquake['geometry']['coordinates'][0]
+      lat = earthquake['geometry']['coordinates'][1]
+      point = RGeo::Cartesian.factory(srid: Earthquake::SRID).point(lon, lat)
+
       {
         usgs_id:     earthquake['id'],
         magnitude:   earthquake['properties']['mag'],
@@ -86,15 +88,10 @@ namespace :earthquakes do
         url:         earthquake['properties']['url'],
         detail:      earthquake['properties']['detail'],
         title:       earthquake['properties']['title'],
-        coordinates: RGeo::Cartesian.factory(srid: Earthquake::SRID).point(
-          earthquake['geometry']['coordinates'][0],
-          earthquake['geometry']['coordinates'][1]
-        ),
+        coordinates: point,
       }
     end
-
-    puts "  Creating #{new_earthquakes.count} new earthquakes..."
     Earthquake.create!(new_earthquakes)
-    puts "  ...done"
+    puts "...done"
   end
 end
