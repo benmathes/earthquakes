@@ -2,12 +2,6 @@
 
 After investing time installing/learning/configuring postGIS, I discovered Heroku's fine print on using postGIS: you must have a *production tier* database, the cheapest of which appears to be $50 a month. For a one-off, that's sadly not worth it. Read more: https://devcenter.heroku.com/articles/postgis
 
-Screenshots:
-
-* ![as JSON](https://raw.github.com/benmathes/earthquakes/master/app/assets/images/as_json.png "As JSON")
-* ![web ui](https://raw.github.com/benmathes/earthquakes/master/app/assets/images/web_ui.png "web ui")
-
-
 ### To set up:
 
 * (I'm assuming you have some kind of ruby and ruby version manager installed)
@@ -34,3 +28,9 @@ Screenshots:
 
 ### Known Issues
 * To save time (it's 2am after too much time spent ferretting down postGIS installation/configuration issues), determining if an earthquake is in the US or not is done by the state name in the earthquake description. From the documentation, there is no metadata on an earthquake that tells you the country/state/etc. This works well, except when an earthquake happens in the *country* of Georgia. Ideally this would be solved with reverse geocoding.
+
+### In Action:
+
+* ![as JSON](https://raw.github.com/benmathes/earthquakes/master/app/assets/images/as_json.png "As JSON")
+* ![web ui](https://raw.github.com/benmathes/earthquakes/master/app/assets/images/web_ui.png "web ui")
+
