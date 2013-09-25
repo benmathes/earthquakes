@@ -23,9 +23,9 @@ class EarthquakesController < ApplicationController
     @earthquakes = @earthquakes.in_usa if params_with_defaults[:location].to_s === 'US'
     @earthquakes = @earthquakes.sort_most_dangerous if params_with_defaults[:sort] && params_with_defaults[:region] == 'place'
 
-    # important to call avg_magnitude last, see method comments.
+    # important to call region_average_magnitude last, see method comments.
     # not ideal, but this is a one-off project.
-    @earthquakes = @earthquakes.avg_magnitude(params_with_defaults[:radius].to_i) if params_with_defaults[:region] == 'place'
+    @earthquakes = @earthquakes.region_average_magnitude(params_with_defaults[:radius].to_i) if params_with_defaults[:region] == 'place'
 
     # force the query to run explicitly, since functions like
     # .count on the Arel will fail since we've done some custom

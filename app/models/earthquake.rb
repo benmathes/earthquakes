@@ -36,7 +36,7 @@ class Earthquake < ActiveRecord::Base
     # include all earthquakes within a region (<= 25 miles from this earthquake).
     # GOTCHA: to scope the regions as well, need to call this last, see "scoping_for_surrounding_quakes"
     # e.g. Earthquake.since_days_ago(3).region_within(10)
-    def avg_magnitude(radius_miles = DEFAULT_RADIUS_MILES)
+    def region_average_magnitude(radius_miles = DEFAULT_RADIUS_MILES)
       relation = self.select(['earthquakes.*', 'avg(surrounding_earthquakes.magnitude) as average_magnitude'])
         .group('earthquakes.id')
         .joins(sanitize_sql([

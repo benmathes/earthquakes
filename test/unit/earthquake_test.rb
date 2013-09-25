@@ -14,7 +14,7 @@ class EarthquakeTest < ActiveSupport::TestCase
   end
 
   test "average magnitude calculation" do
-    assert_equal([4.75, 4.75, 3.0], Earthquake.avg_magnitude.map(&:average_magnitude).map(&:to_f))
+    assert_equal([4.75, 4.75, 3.0], Earthquake.region_average_magnitude.map(&:average_magnitude).map(&:to_f))
   end
 
   test "since_days_ago scope" do
@@ -29,7 +29,7 @@ class EarthquakeTest < ActiveSupport::TestCase
   test "sort_most_dangerous" do
     assert_equal(
       [4.75, 4.75, 3.0],
-      Earthquake.avg_magnitude.sort_most_dangerous.map(&:average_magnitude).map(&:to_f)
+      Earthquake.region_average_magnitude.sort_most_dangerous.map(&:average_magnitude).map(&:to_f)
     )
   end
 
