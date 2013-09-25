@@ -1,0 +1,53 @@
+$ ->
+  mapOptions =
+    center: new google.maps.LatLng $('#map_center_lat').val(), $('#map_center_lon').val()
+    zoom: 6,
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+
+  map = new google.maps.Map $("#map")[0], mapOptions
+
+  $('.earthquake').each (i, earthquake) ->
+
+    position = new google.maps.LatLng(
+      parseFloat($(earthquake).find('.lat').text(), 10),
+      parseFloat($(earthquake).find('.lon').text(), 10)
+    )
+
+    # color code how bad the avg magnitude in this earthquake's region,
+    # 0 -> 1 scale, 1 is 7 or higher on the ricther scale
+    all_bad_beyond_this_richter_scale_level = 7.0
+    magnitude_color_ratio = (
+      Math.floor(
+        parseFloat($(earthquake).find('.magnitude').text(), 10),
+        all_bad_beyond_this_richter_scale_level
+      ) / all_bad_beyond_this_richter_scale_level
+    )
+    if magnitude_color_ratio < 0.5
+      color = 'rgb(' + parseInt(magnitude_color_ratio * 255) + ', 255, 0)'
+    else
+      color = 'rgb(255, ' + parseInt((1 - magnitude_color_ratio) * 255) + ', 0)'
+
+    circle_options = {
+      strokeColor: color,
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: color,
+      fillOpacity: 0.25,
+      map: map,
+      center: position,
+      radius: <%= Earthquake::DEFAULT_RADIUS_MILES * Earthquake::METERS_PER_MILE %>
+    };
+
+    regionCircle = new google.maps.Circle(circle_options);
+
+    new google.maps.Marker
+      map: map
+      position: position,
+      title: $(earthquake).find('.title').text()
+
+
+  $('.earthquake').on 'click', ()->
+    map.setCenter(new google.maps.LatLng(
+      parseFloat($(this).find('.lat').text(), 10),
+      parseFloat($(this).find('.lon').text(), 10)
+    ))

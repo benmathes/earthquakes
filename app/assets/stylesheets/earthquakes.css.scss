@@ -1,7 +1,27 @@
-#map {
-  height: 500px;
+.title {
+  margin: 0px 10%;
 }
 
-#map, earthquakes {
-  width: 100%
+#map {
+  height: 300px;
+}
+
+#map, .earthquakes_scroll_wrapper {
+  width: 80%;
+  margin: 10px 10%;
+}
+
+.earthquakes_scroll_wrapper {
+  height: 200px;
+  overflow: scroll;
+  box-shadow: 0px 0px 1px 1px inset;
+}
+
+.earthquakes {
+  width: 100%;
+}
+
+.earthquake:hover {
+  background-color: #eee;
+  cursor: pointer;
 }

@@ -1,27 +1,36 @@
-.h1 Earthquakes
+.title
+  %h1 Earthquakes
+  %ul
+    %li click over an earthquake in the table (region center) to center the map
+    %li region circles are color-coded by average magnitude, anything beyond a 7 is red
+    %li= link_to "10 most dangerous places in the US over the last 15 days", "/quakes/?days=15&count=10&location=US"
+    %li= link_to "10 more dangerous places in the world over the last 30 days", "/quakes/?days=15&count=10"
+    %li= link_to "10 most dangerous regions", "/quakes/?days=15&count=10region=true"
 
 #map
-- %w[x y].each do |cardinal|
-  - center_along_cardinal = @earthquakes.map{|e| e.coordinates.send(cardinal).to_f }.reduce(:+).to_f / @earthquakes.count
+- # center on first earthquake
+- %w[lat lon].each do |cardinal|
+  - center_along_cardinal = @earthquakes.first.coordinates.send(cardinal).to_f
   %input{ :type => "hidden", :id => "map_center_#{cardinal}", :value => center_along_cardinal }
-
-%table.earthquakes
-  %tr
-    %th usgs id
-    %th time
-    %th Lat
-    %th Lon
-    %th Magnitude
-    %th location
-    %th Average Magnitude
-
-  - @earthquakes.each do |earthquake|
-    %tr.earthquake
-      %td= earthquake.usgs_id
-      %td= earthquake.time
-      %td.lat= earthquake.coordinates.x
-      %td.lon= earthquake.coordinates.y
-      %td= earthquake.magnitude
-      %td.title= earthquake.title
-      %td= earthquake.average_magnitude
+.earthquakes_scroll_wrapper
+  %table.earthquakes
+    %thead.fixed
+      %tr
+        %th usgs id
+        %th time
+        %th Lat
+        %th Lon
+        %th Magnitude
+        %th location
+        %th Average Magnitude
+    %tbody.scrollable
+      - @earthquakes.each do |earthquake|
+        %tr.earthquake
+          %td= earthquake.usgs_id
+          %td= earthquake.time
+          %td.lat= earthquake.coordinates.lat
+          %td.lon= earthquake.coordinates.lon
+          %td.magnitude= earthquake.magnitude
+          %td.title= earthquake.title
+          %td= earthquake.average_magnitude
 
