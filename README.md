@@ -4,8 +4,8 @@ After investing time installing/learning/configuring postGIS, I discovered Herok
 
 Screenshots:
 
-* ![as JSON](https://raw.github.com/benmathes/earthquakes/blob/master/app/assets/images/as_json.png "As JSON")
-* ![web ui](https://raw.github.com/benmathes/earthquakes/blob/master/app/assets/images/web_ui.png "web ui")
+* ![as JSON](https://raw.github.com/benmathes/earthquakes/master/app/assets/images/as_json.png "As JSON")
+* ![web ui](https://raw.github.com/benmathes/earthquakes/master/app/assets/images/web_ui.png "web ui")
 
 
 ### To set up:
